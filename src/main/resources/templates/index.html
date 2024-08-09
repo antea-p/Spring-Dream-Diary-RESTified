@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>~ 𝓓𝓻𝓮𝓪𝓶 𝓓𝓲𝓪𝓻𝔂 ~ homepage</title>
+    <link th:replace="~{fragments :: css}">
+</head>
+<body>
+<div class="main-column">
+<div th:replace="~{fragments :: header}"></div>
+
+<article class="content-box">
+        <h1 class="home-title">~ 𝓓𝓻𝓮𝓪𝓶 𝓓𝓲𝓪𝓻𝔂 ~</h1>
+        <div class="home-subtitle">
+            "Nothing is real, there's nothing to get hung about..."
+        </div>
+        <img src="/divider.gif" alt="" />
+        <div th:if="${isLoggedIn}" class="hello">
+            <p th:text="'Hello, ' + ${username} + '!'"></p>
+            <a href="/diary">
+                <img src="/view-diary.gif" alt="View your Diary" />
+            </a>
+        </div>
+        <div>
+            Dream Diary is your space to explore your
+            thoughts and dreams.
+        </div>
+
+        <section>
+            <h2 class="home-section-header"><span class="hand"></span>Record Your Journey</h2>
+            <ul>
+                <li>
+                    <strong>Title Your Entries:</strong> Give each dream or thought a simple title that sums it up.
+                </li>
+                <li>
+                    <strong>Write Your Thoughts:</strong> Share whatever is on your mind, whether it’s a strange dream
+                    or something that happened during the day. Every detail helps you understand yourself better.
+                </li>
+                <li>
+                    <strong>Add Tags:</strong> Use tags to note important themes, like "Library" or "Magic."
+                </li>
+                <li>
+                    <strong>Share Your Emotions:</strong> Add feelings to your entries. No matter if they are positive,
+                    negative or neutral, recording these emotions will help paint a full picture of your inner world!
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="home-section-header"><span class="hand"></span>Reflect and Discover</h2>
+            <ul>
+                <li>
+                    <strong>Dream Diary is more than just a diary;</strong> it's a tool for self-discovery. Look back on your entries, find
+                    patterns, and explore the depths of your subconscious. Whether you want to understand your dreams or
+                    just keep track of your daily thoughts, here you will get a calm space for reflection.
+                </li>
+                <li>
+                    <strong>Start your journey into the Dream.</strong> Your mind awaits.
+                </li>
+            </ul>
+        </section>
+</article>
+
+<div th:replace="~{fragments :: footer}"></div>
+</div>
+</body>
+</html>

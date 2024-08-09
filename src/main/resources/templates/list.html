@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>~ 𝓓𝓻𝓮𝓪𝓶 𝓓𝓲𝓪𝓻𝔂 ~</title>
+    <link th:replace="~{fragments :: css}">
+</head>
+<body>
+<div class="main-column">
+
+<div th:replace="~{fragments :: header}"></div>
+
+<article class="content-box full-width-content-box">
+        <h1 class="page-title">~ 𝓨𝓸𝓾𝓻 𝓓𝓲𝓪𝓻𝔂 ~</h1>
+        <p>
+            Are you ready?
+        </p>
+
+        <form action="/diary" method="get" class="sort-form">
+            <div class="sort-form-row">
+                <input type="text" placeholder="Search by title..." name="title" class="sort-form-field-large" th:value="${param.title}">
+                <button type="submit" class="sort-form-field-small">Search</button>
+            </div>
+
+            <div class="sort-form-row">
+                <button type="submit" name="sortBy" value="TITLE" class="sort-form-field-small">Sort by Title</button>
+                <button type="submit" name="sortBy" value="CREATEDDATE" class="sort-form-field-small">Sort by Date</button>
+                <select name="sortDir" class="sort-form-field-small">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+        </form>
+
+        <form action="/diary" method="get">
+            <button type="submit" name="clearSort" value="true">Clear Sorting</button>
+        </form>
+
+        <div>
+            <div class="list-entry">
+                <h2>
+                    <a href="/diary/create" class="button">
+                        <span class="hand"></span>
+                        Create New Entry
+                    </a>
+                </h2>
+            </div>
+            <div th:each="entry : ${diaryEntries}" class="list-entry">
+                <h2>
+                    <span class="hand"></span>
+                    <a th:href="@{/diary/show/{id}(id=${entry.id})}" th:text="${entry.title}">[Title]</a>
+                </h2>
+                <div class="list-entry-row">
+                    <div class="list-entry-row-item" th:text="${entry.createdDate}">[Date]</div>
+                    <div class="list-entry-row-item" th:each="emotion : ${entry.emotions}">
+                        <div class="entry-emotion" th:text="${emotion.name}">[Emotion Name]</div>
+                    </div>
+                    <div class="list-entry-row-item" th:each="tag : ${entry.tags}">
+                        <div class="entry-tag" th:text="${tag.name}">[Tag Name]</div>
+                    </div>
+                </div>
+                <div>
+                    >>> <span th:text="${#strings.abbreviate(entry.content, 128)} + '...'">[Content]</span>
+                </div>
+            </div>
+
+        </div>
+
+
+</article>
+
+<div th:replace="~{fragments :: footer}"></div>
+</div>
+</body>
+</html>

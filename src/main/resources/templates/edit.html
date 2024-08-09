@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Diary Entry</title>
+    <link th:replace="~{fragments :: css}">
+</head>
+<body>
+<div class="main-column">
+<div th:replace="~{fragments :: header}"></div>
+
+<article class="content-box">
+        <h1>Edit Diary Entry</h1>
+        <form th:action="@{/diary/edit}" th:object="${diaryEntry}" method="post" class="edit-form">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <div class="alert alert-error" th:if="${titleError}" th:text="${titleError}"></div>
+                <input type="text" id="title" th:field="*{title}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <div class="alert alert-error" th:if="${contentError}" th:text="${contentError}"></div>
+                <textarea id="content" th:field="*{content}" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tags">Tags:</label>
+                <input type="text" id="tags" name="tags" th:value="${commaSeparatedTags}" placeholder="Enter tags, separated by commas">
+                <small class="form-text text-muted">Please use comma-separated list for tags (example: Library, Magic).</small>
+            </div>
+
+            <div class="form-group">
+                <strong>Emotions:</strong>
+                <ul>
+                    <li th:each="emotion : ${allEmotions}">
+                        <input type="checkbox" th:attr="id='emotion_' + ${emotion.id}, name='emotion_' + ${emotion.id}"
+                               th:value="${emotion.id}" th:checked="${selectedEmotionIds.contains(emotion.id)}">
+                        <label th:attr="for='emotion_' + ${emotion.id}" th:text="${emotion.name}">[Emotion Name]</label>
+                    </li>
+                </ul>
+            </div>
+
+
+            <button type="submit" class="button-primary">Save</button>
+
+        </form>
+
+        <div>
+            <a href="/diary" class="button-secondary">Back to Diary List</a>
+        </div>
+
+</article>
+
+<div th:replace="~{fragments :: footer}"></div>
+</div>
+</body>
+</html>

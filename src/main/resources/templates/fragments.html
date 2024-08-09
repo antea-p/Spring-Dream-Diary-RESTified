@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>~ 𝓓𝓻𝓮𝓪𝓶 𝓓𝓲𝓪𝓻𝔂 ~</title>
+    <link th:fragment="css" rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<header th:fragment="header" class="flex header-container">
+    <p class="header-top"><b>/dream-diary/</b></p>
+    <a class="header-cell" href="/">Home</a>
+    <a class="header-cell" href="/login" sec:authorize="!isAuthenticated()">Login</a>
+    <a class="header-cell" href="/register" sec:authorize="!isAuthenticated()">Register</a>
+    <a class="header-cell" href="/admin" sec:authorize="hasRole('ADMIN')">Admin</a>
+    <a class="header-cell" href="/diary" sec:authorize="isAuthenticated()">My Diary</a>
+<!--    <a class="header-cell" href="/about">About</a>-->
+    <a class="header-cell" href="/logout" sec:authorize="isAuthenticated()">Logout</a>
+</header>
+
+<div th:fragment="footer">
+    <footer>
+        <span>© 2024- Dream Diary</span>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>~ 𝓓𝓻𝓮𝓪𝓶 𝓓𝓲𝓪𝓻𝔂 ~ Login</title>
+    <link th:replace="~{fragments :: css}">
+</head>
+<body>
+<div class="main-column">
+<div th:replace="~{fragments :: header}"></div>
+
+<div class="content-box">
+    <form name="f" th:action="@{/login}" method="post">
+        <h1 class="page-title">𝓛𝓸𝓰𝓲𝓷</h1>
+        <a href="/register">Don't have an account? Make one!</a>
+        <fieldset class="login-fieldset">
+            <div th:if="${param.error}" class="alert alert-error">
+                Invalid username and/or password.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                You have been logged out.
+            </div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="input-text"/>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="input-text"/>
+            <div class="form-actions">
+                <button type="submit" class="btn">Login</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+</div>
+</body>
+</html>

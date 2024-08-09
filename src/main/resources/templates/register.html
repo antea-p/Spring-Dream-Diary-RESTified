@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>~ 𝓓𝓻𝓮𝓪𝓶 𝓓𝓲𝓪𝓻𝔂 ~ Register</title>
+    <link th:replace="~{fragments :: css}">
+</head>
+<body>
+<div class="main-column">
+<div th:replace="~{fragments :: header}"></div>
+
+<div class="content-box">
+    <form name="f" th:action="@{/register}" th:object="${registrationCommand}" method="post">
+        <h1 class="page-title">𝓡𝓮𝓰𝓲𝓼𝓽𝓮𝓻</h1>
+        <a href="/register">Already have an account? Log in here!</a>
+
+        <fieldset class="register-fieldset">
+            <div th:if="${error}" class="alert alert-error">
+                <p th:text="${error}"></p>
+            </div>
+
+            <div th:if="${#fields.hasErrors('username')}" class="alert alert-error">
+                <p th:errors="*{username}">Username Error</p>
+            </div>
+
+            <div th:if="${#fields.hasErrors('password')}" class="alert alert-error">
+                <p th:errors="*{password}">Password Error</p>
+            </div>
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" th:field="*{username}" class="input-text"/>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" th:field="*{password}" class="input-text"/>
+
+            <label for="repeatPassword">Repeat Password</label>
+            <input type="password" id="repeatPassword" name="repeatPassword" th:field="*{repeatPassword}" class="input-text"/>
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Register</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>~ 𝓓𝓻𝓮𝓪𝓶 𝓓𝓲𝓪𝓻𝔂 ~</title>
+    <link th:replace="~{fragments :: css}">
+</head>
+<body>
+<div class="main-column">
+<div th:replace="~{fragments :: header}"></div>
+
+<article class="content-box full-width-content-box">
+        <h1 class="page-title">𝓐𝓭𝓶𝓲𝓷 𝓓𝓪𝓼𝓱𝓫𝓸𝓪𝓻𝓭</h1>
+        <h2><span class="hand"></span>Diary Count by User</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Diary Count</th>
+            </tr>
+            <tr th:each="stat : ${diaryEntriesStatistics}">
+                <td th:text="${stat.key}">User</td>
+                <td th:text="${stat.value}">Diary Count</td>
+            </tr>
+        </table>
+        <h2><span class="hand"></span>Emotion Usage</h2>
+        <table>
+            <tr>
+                <th>Emotion</th>
+                <th>Count</th>
+            </tr>
+            <tr th:each="emotionStat : ${emotionStatistics}">
+                <td th:text="${emotionStat.key}">Emotion</td>
+                <td th:text="${emotionStat.value}">Count</td>
+            </tr>
+        </table>
+        <h2><span class="hand"></span>Tag Usage</h2>
+        <table>
+            <tr>
+                <th>Tag</th>
+                <th>Count</th>
+            </tr>
+            <tr th:each="tagStat : ${tagUsageStatistics}">
+                <td th:text="${tagStat.name}">Tag</td>
+                <td th:text="${tagStat.count}">Count</td>
+            </tr>
+        </table>
+</article>
+
+<div th:replace="~{fragments :: footer}"></div>
+</div>
+</body>
+</html>

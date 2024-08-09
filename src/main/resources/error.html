@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en_GB">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<h1>Error</h1>
+<div th:if="${#strings.isNotEmpty(errorMessage)}">
+    <p th:text="${errorMessage}"></p>
+</div>
+<a href="/">Home</a>
+</body>
+</html>

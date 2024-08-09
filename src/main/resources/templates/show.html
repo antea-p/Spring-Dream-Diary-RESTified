@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>~ 𝓓𝓻𝓮𝓪𝓶 𝓓𝓲𝓪𝓻𝔂 ~</title>
+    <link th:replace="~{fragments :: css}">
+</head>
+<body>
+<div class="main-column">
+<div th:replace="~{fragments :: header}"></div>
+
+<article class="content-box full-width-content-box">
+    <h1 th:text="${diaryEntry.title}">[Title]</h1>
+    <div class="list-entry-row">
+        <div class="list-entry-row-item" th:text="${diaryEntry.createdDate}">[Date]</div>
+        <div class="list-entry-row-item" th:each="emotion : ${diaryEntry.emotions}">
+            <div class="entry-emotion" th:text="${emotion.name}">[Emotion Name]</div>
+        </div>
+        <div class="list-entry-row-item" th:each="tag : ${diaryEntry.tags}">
+            <div class="entry-tag" th:text="${tag.name}">[Tag Name]</div>
+        </div>
+    </div>
+
+    <div>
+        <p th:text="${diaryEntry.content}">[Content]</p>
+    </div>
+
+    <div class="entry-action-row">
+        <a th:href="@{/diary}" class="button">Back to List</a>
+        <a th:href="@{/diary/edit/{id}(id=${diaryEntry.id})}" class="button">Edit</a>
+        <a th:href="@{/diary/delete/{id}(id=${diaryEntry.id})}" class="btn btn-danger"
+           th:onclick="'return confirm(\'Are you sure?\');'">Delete
+        </a>
+    </div>
+</article>
+
+<div th:replace="~{fragments :: footer}"></div>
+</div>
+</body>
+</html>
